@@ -1,0 +1,192 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+      <script src="static/project/script.js"></script>
+      <link rel="stylesheet" href="{% static 'static\client_pages2\style.css' %}">
+      <link rel="stylesheet" href="{% static "static\client_pages2\scripts.js" %}">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+{#         <meta charset="utf-8">#}
+{#        <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">#}
+{#            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>#}
+{#    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
+{#      <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">#}
+{#            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">#}
+{##}
+{#  <link href="{% static 'mdb/css/bootstrap.min.css' %}" rel="stylesheet">#}
+{#  <!-- Material Design Bootstrap -->#}
+{#  <link href="{% static 'mdb/css/mdb/css/mdb.min.css' %}" rel="stylesheet">#}
+{#  <!-- Your custom styles (optional) -->#}
+{#  <link href="% static 'mdb/css/style.css' %}" rel="stylesheet">#}
+  <link rel="stylesheet" type="text/css" href="{% static 'footer.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'abc.css' %}">
+    <style>
+        .navbar {
+        margin-bottom: 0;
+        background-color: rgba(5, 0, 0, 1);
+        z-index: 9999;
+        border: 0;
+        font-size: 12px !important;
+        line-height: 0.5 !important;
+        letter-spacing: 4px;
+        border-radius: 0;
+        font-family: Montserrat, sans-serif;
+        }
+
+        .navbar li a, .navbar .navbar-brand
+        {
+            color: #fff !important;
+        }
+
+        .navbar-nav li a:hover, .navbar-nav li.active a {
+            color: #000000 !important;
+            background-color: #fff !important;
+        }
+
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+            color: #fff !important;
+        }
+
+        .dropdown-menu li a:hover, .dropdown-menu li.active a {
+            color: #ffffff !important;
+            background-color: #000000 !important;
+        }
+
+        .asteriskField{
+            display:none;
+        }
+
+
+        .input_heads{
+
+        color:black;
+        width:75%;
+
+    }
+
+        .classbutton{
+       border-radius:10px;width:20%;
+        height:40%;background-color:#3c26267a;color:white;
+    }
+
+
+
+    </style>
+
+  </head>
+
+  <body>
+
+
+
+
+     <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+
+            <!-- header -->
+{#            <div class="navbar-header">#}
+{#                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">#}
+{#                    <span class="icon-bar"></span>#}
+{#                    <span class="icon-bar"></span>#}
+{#                    <span class="icon-bar"></span>#}
+{#                </button>#}
+{#                <a class="navbar-brand" href=" "></a>#}
+{#            </div>#}
+
+
+            <!-- items -->
+            <div class="collapse navbar-collapse" id="myNavBar" style="position:relative">
+                <ul class="nav navbar-nav">
+                    <li >
+                        <!-- <a href="{% url 'index' %}">
+                            &nbsp;HOME <span class="fa fa-home" style="font-size: 16px;" ></span>
+                        </a> -->
+                    </li>
+                    <li >
+                        <a href="">
+                            ABOUT US <span class="fa fa-lightbulb-o" style="font-size: 17px;" ></span>
+                        </a>
+                    </li>
+
+
+                <div style="position:absolute;margin-left:86%; padding-top:.1cm">
+                    <li class="active" style="">
+                         <button class="dropdown-toggle btn white-text" style="font-size:.6cm;background-color:inherit; color:white " type="button" data-toggle="dropdown">
+                        <span class="fa fa-user-circle"></span></button>
+                        <ul class="dropdown-menu" style="color:rgba(1,1,1,0.99)">
+
+                        {% if user.is_authenticated %}
+
+
+
+                            <li>
+                                <a href="{% url 'account:profile_update' %}">
+                                    <span class="fa fa-pencil" ></span> Edit Profile
+                                </a>
+                            </li>
+
+
+
+                            <li>
+                                <a href="{% url 'account:logout' %}">
+                                    <span class="fa fa-power-off" ></span> Logout
+                                </a>
+                            </li>
+
+                        {% else %}
+
+                        <li>
+                            <a href="{% url 'login' %}">
+                                <span class="fa fa-sign-in"></span>&nbsp; Log in
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'account:register' %}">
+                                <span class="fa fa-address-card-o" ></span> Sign up
+                            </a>
+                        </li>
+
+                    {% endif %}
+                                                </ul>
+
+                    </li>
+
+                </ul>
+            </div>
+            </div>
+
+        </div>
+
+    </nav>
+    {% block content %}
+
+
+    {% endblock %}
+
+  </body>
+</html>
