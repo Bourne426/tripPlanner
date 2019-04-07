@@ -10,8 +10,9 @@ def query_form_view(request):
         forms = Query_Form(request.POST)
         if forms.is_valid():
             destination=forms.cleaned_data['destination']
-            cityId = City.objects.raw('SELECT id from package_city WHERE Name=%s OR State=%s',[destination],[destination])
-            Pid = Trip_Package.objects.raw('SELECT id from package_trip_package_Cities WHERE city=%s',[cityId])
+            # cityId = City.objects.raw('SELECT id from package_city WHERE Name=%s OR State=%s',[destination],[destination])
+            # Pid = Trip_Package.objects.raw('SELECT id from package_trip_package_Cities WHERE city=%s',[cityId])
+
             P_list = Package_Details.objects.get(Package_Id=Pid)
 
             forms = {
