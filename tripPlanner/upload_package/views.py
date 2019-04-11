@@ -19,12 +19,13 @@ def UploadHotelview(request):
             add = address.save()
             form.Address = add
             request.session['Hotel'] = form.id
-            hotel_instance=form.save()
-            for amenity in hotel_instance.Amenities_List.all():
-                hostel_instance.amenities.add(amenity)
-                hostel_instance.save()
+            hotel_instance=upload.save()
+            print(hotel_instance)
+            for amenity in hotel_instance.Amenities.all():
+                hotel_instance.Amenities.add(amenity)
+                hotel_instance.save()
             price_inst = price.save(commit=False)
-            price_inst.Hotel_Id = request.session.get('Hotel')
+            price_inst.Hotel_Id = form
             price.save()
 
         else:
@@ -57,7 +58,6 @@ def UploadActivities(request):
                         break
         else:
             print(activity.errors)
-            print('hasdhasbdhbashdbhadsbasbdbsadbasbdasbad')
     else:
 
         upload = ActivityForm()
@@ -72,7 +72,7 @@ def UploadActivities(request):
 
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def UploadPackview(request):
 
     if request.method=='POST':
@@ -81,7 +81,7 @@ def UploadPackview(request):
         dest = TripDestForm(data=request.POST)
         if upload.is_valid() and origin.is_valid() :
             form = upload.save(commit=False)
-            pack_instance=form.save()
+            pack_instance=upload.save()
             orig = origin.save(commit=False)
             destin = dest.save(commit=False)
             for city in pack_instance.Cities.all():
@@ -98,7 +98,9 @@ def UploadPackview(request):
             orig.save()
 
             request.session['package'] = form.id
-            return redirect('upload:details')
+            request.session['days'] = form.Day
+
+            return redirect('upload_package:hostelDetails')
 
         else:
             print(upload.errors,address.errors)
@@ -113,21 +115,26 @@ def UploadPackview(request):
 
 
 def UploadDetailview(request):
-
     if request.method=='POST':
         pid =  request.session.get('package')
         package = Trip_Package.objects.get(pk=pid)
-
         form = PackageDetailForm(data=request.POST)
         if form.is_valid():
             forminst = form.save(commit=False)
-            forminst.Package_Id =package
+            forminst.Package_Id = package
+            forminst = form.save()
             for activity in forminst.Activities.all():
-                pack_instance.Activities.add(city)
-                pack_instance.save()
-
+                forminst.Activities.add(activity)
+                forminst.save()
+        day = request.session.get('days')
+        for i in range(day - 1):
+            request.session['days'] = day-1
+            return redirect('upload_package:hostelDetails')
         else:
             print(form.errors)
+
+        return render(request,'packagedone.html')
+
 
     else:
         form = PackageDetailForm()

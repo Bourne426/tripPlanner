@@ -11,7 +11,7 @@ from crispy_forms.layout import Field, Layout, ButtonHolder, Submit, Div, HTML
 class HotelForm(ModelForm):
     class Meta:
         model = Hotel
-        fields = ['Name','Stars','Type','Amenities_List']
+        fields = ['Name','Stars','Type','Amenities']
 
     #
     # helper = FormHelper()

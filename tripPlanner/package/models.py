@@ -6,10 +6,11 @@ from django.db.models.fields.files import FieldFile
 from django.utils import timezone
 
 class Amenities(models.Model):
-    Amenities_list = models.CharField(max_length=25)
+    Amenities = models.CharField(max_length=25)
 
     def __str__(self):
-        return self.Amenities_list
+        return self.Amenities
+
 
 class City(models.Model):
     Name = models.CharField(max_length=50)
@@ -24,15 +25,13 @@ class Hotel_Address(models.Model):
     Street_1 = models.CharField(max_length=100)
     Street_2 = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.Hotel_Id
 
 
 class Hotel(models.Model):
     Name = models.CharField(max_length=50)
     Stars = models.IntegerField()
     Type = models.CharField(max_length=15)
-    Amenities_List = models.ManyToManyField(Amenities)
+    Amenities = models.ManyToManyField(Amenities)
     Address = models.ForeignKey(Hotel_Address, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -45,8 +44,6 @@ class Price_Hotel(models.Model):
     Hotel_Id = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     Per_Day = models.IntegerField()
 
-    def __str__(self):
-        return self.Hotel_Id
 
 
 class Key_Features(models.Model):
@@ -64,9 +61,6 @@ class Trip_Package(models.Model):
     Cost = models.IntegerField()
     Keys = models.ManyToManyField(Key_Features)
     Cities = models.ManyToManyField(City)
-
-    def __str__(self):
-        return self.id
 
 
 
@@ -107,8 +101,6 @@ class Package_Details(models.Model):
     Activities = models.ManyToManyField(Total_Activities)
 
 
-    def __str__(self):
-        return self.Package_Id
 
 
 
