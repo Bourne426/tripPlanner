@@ -27,7 +27,7 @@ def UploadHotelview(request):
             price_inst = price.save(commit=False)
             price_inst.Hotel_Id = form
             price.save()
-
+            return HttpResponse('done')
         else:
             print(upload.errors,address.errors)
     else:
@@ -56,6 +56,8 @@ def UploadActivities(request):
                         photo.save()
                     except Exception as e:
                         break
+            return HttpResponse('done')
+
         else:
             print(activity.errors)
     else:
@@ -130,8 +132,13 @@ def UploadDetailview(request):
         for i in range(day - 1):
             request.session['days'] = day-1
             return redirect('upload_package:hostelDetails')
+
+
+
         else:
             print(form.errors)
+            
+        return HttpResponse('done')
 
         return render(request,'packagedone.html')
 
