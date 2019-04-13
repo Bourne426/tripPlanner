@@ -109,8 +109,6 @@ class Package_Details(models.Model):
 
 
 
-
-
 class Extra_Activity(models.Model):
     Booking_Id = models.ForeignKey(Trip_Package, on_delete=models.CASCADE)
     Activity_Id = models.ForeignKey(Total_Activities, on_delete=models.CASCADE)
