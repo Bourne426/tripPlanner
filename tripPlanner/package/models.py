@@ -6,16 +6,21 @@ from django.db.models.fields.files import FieldFile
 from django.utils import timezone
 
 class Amenities(models.Model):
-    Amenities = models.CharField(max_length=25)
+    Amenities = models.CharField(max_length=100)
 
     def __str__(self):
         return self.Amenities
 
+class Week(models.Model):
+    day = models.CharField(max_length=50)
+    def __str__(self):
+        return self.day
+
 
 class City(models.Model):
-    Name = models.CharField(max_length=50)
-    State = models.CharField(max_length=50)
-    Country = models.CharField(max_length=50)
+    Name = models.CharField(max_length=100)
+    State = models.CharField(max_length=100)
+    Country = models.CharField(max_length=100)
 
     def __str__(self):
         return self.Name
@@ -28,9 +33,9 @@ class Hotel_Address(models.Model):
 
 
 class Hotel(models.Model):
-    Name = models.CharField(max_length=50)
+    Name = models.CharField(max_length=100)
     Stars = models.IntegerField()
-    Type = models.CharField(max_length=15)
+    Type = models.CharField(max_length=100)
     Amenities = models.ManyToManyField(Amenities)
     Address = models.ForeignKey(Hotel_Address, on_delete=models.CASCADE)
 
@@ -47,20 +52,21 @@ class Price_Hotel(models.Model):
 
 
 class Key_Features(models.Model):
-    key = models.CharField(max_length=20)
+    key = models.CharField(max_length=100)
 
     def __str__(self):
         return self.key
 
 
 class Trip_Package(models.Model):
-    Title = models.CharField(max_length=50)
+    Title = models.CharField(max_length=255)
     Description = models.TextField()
     Night = models.IntegerField()
     Day = models.IntegerField()
     Cost = models.IntegerField()
     Keys = models.ManyToManyField(Key_Features)
     Cities = models.ManyToManyField(City)
+    Staring = models.ManyToManyField(Week)
 
 
 
@@ -81,20 +87,21 @@ class Trip_Destination(models.Model):
 
 class Total_Activities(models.Model):
     City_Id = models.ForeignKey(City, on_delete=models.CASCADE)
-    Activity = models.CharField(max_length=15)
+    Activity = models.CharField(max_length=255)
     Description = models.TextField(blank=True, null=True)
     Price_Per_Person = models.IntegerField()
     Duration = models.IntegerField()
-    Sutaible_For = models.CharField(max_length=5)
-    Transport_Mode = models.CharField(max_length=15)
+    Sutaible_For =models.CharField(max_length=255)
+    Transport_Mode = models.CharField(max_length=255)
 
-
+    def __str__(self):
+        return self.Activity
 
 
 class Package_Details(models.Model):
     Package_Id = models.ForeignKey(Trip_Package, on_delete=models.CASCADE)
     Day = models.IntegerField()
-    Title = models.CharField(max_length=25)
+    Title = models.CharField(max_length=255)
     Description = models.TextField(blank=True, null=True)
     City = models.ForeignKey(City, on_delete=models.CASCADE)
     Hotel_Id = models.ForeignKey(Hotel, on_delete=models.CASCADE)
@@ -127,6 +134,3 @@ class Booking(models.Model):
 class Gallery(models.Model):
     Activity_Id= models.ForeignKey(Total_Activities,on_delete=models.CASCADE)
     img = models.ImageField(upload_to='photos',blank=True)
-
-    def __str__(self):
-        return self.Activity_Id
