@@ -1,23 +1,22 @@
 {% extends 'nav.html' %}
     {% load widget_tweaks %}
     {% block content %}
-
-{#        <h2>Sign up</h2>#}
-{#          <form method="post">#}
-{#            {% csrf_token %}#}
-{#            {{ user_info.as_p }}#}
-{#            <button type="submit">Sign up</button>#}
-{#          </form>#}
+{% load staticfiles %}
 
 
 
 
         <!-- Default form register -->
-<div class="container">
-<center>
-<div style="width: 40% ">
+        <!-- start banner Area -->
+        <section class="banner-area relative" style="height:980px">
+          <div class="overlay overlay-bg"></div>
+          <div class="container">
+            <div class="row fullscreen align-items-center justify-content-between">
+              <div class="col-lg-6 offset-lg-3 col-md-6 banner-right">
+                <div class="tab-content" id="myTabContent" style="margin-top:100px;">
+                  <div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
 
-<form class="text-center border border-light p-5" method="post">
+<form class="form-wrap" method="post">
 {% csrf_token %}
     <p class="h4 mb-4">Sign up</p>
 
@@ -44,8 +43,12 @@
         <a href="" target="_blank">terms of service</a>. </p>
 
 </form>
-</div>
-</center>
-</div>
+
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 <!-- Default form register -->
 {% endblock %}
