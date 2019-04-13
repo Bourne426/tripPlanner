@@ -25,12 +25,11 @@ from account.views import user_login,index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', user_login, name='login'),
-        path('account/', include("account.urls")),
-        path('index/', index,name='index'),
-        path('package/', include("package.urls")),
-        path('upload/', include("upload_package.urls")),
-
-        re_path(r'^accounts/', include('account.passwords.urls')),
+    path('account/', include("account.urls")),
+    path('index/', index, name='index'),
+    path('package/', include("package.urls")),
+    path('upload/', include("upload_package.urls")),
+    re_path(r'^accounts/', include('account.passwords.urls')),
 
 ]
 

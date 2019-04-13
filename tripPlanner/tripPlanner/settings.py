@@ -14,8 +14,8 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MEDIA_DIR = os.path.join(BASE_DIR,'media')
-STATIC_DIR = os.path.join(BASE_DIR,'static')
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-'package',
+    'package',
     'django_extensions',
     'account',
     'widget_tweaks',
@@ -80,23 +80,23 @@ WSGI_APPLICATION = 'tripPlanner.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 #
-DATABASES = {
-    'default':
-        {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'tripPlanner',
-            'USER': 'root',
-            'PASSWORD': 'admin()',
-            'HOST':'localhost',
-        }
-}
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
+#     'default':
+#         {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'NAME': 'tripPlanner',
+#             'USER': 'root',
+#             'PASSWORD': 'ravish11',
+#             'HOST': 'localhost',
+#         }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 GRAPH_MODELS = {

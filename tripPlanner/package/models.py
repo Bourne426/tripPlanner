@@ -68,6 +68,9 @@ class Trip_Package(models.Model):
     Cities = models.ManyToManyField(City)
     Staring = models.ManyToManyField(Week)
 
+    def __str__(self):
+        return self.Title
+
 
 
 class Trip_Origin(models.Model):
@@ -106,6 +109,9 @@ class Package_Details(models.Model):
     City = models.ForeignKey(City, on_delete=models.CASCADE)
     Hotel_Id = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     Activities = models.ManyToManyField(Total_Activities)
+
+    def __str__(self):
+        return self.Title
 
 
 

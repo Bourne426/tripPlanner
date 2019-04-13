@@ -3,23 +3,12 @@ from .models import City
 class Query_Form(forms.Form):
 
     choice = City.objects.all()
-    # choice = [dict(q) for q in choice]
-
-    choice = list(choice)
-    # print(type(choice))
-    i = 0
+    choice = list(choice) #converting it to queryset into string
     choice2 = []
     for x in choice:
-        # print(x)
         x = str(x)
-        # print(type(x))
-        c1 = (i, x)
-        # print(c1)
-        choice2.append(c1)
-        i = i + 1
-    print(choice2)
+        city_tuple_value = (x, x) #here (x,x) is like key value pair i.e (x = returned value after form submission, x = city name)
+        choice2.append(city_tuple_value)
 
-    origin = forms.CharField(label='origin', widget=forms.Select(choices=choice2))
-    destination = forms.CharField(label='destination', widget=forms.Select(choices=choice2))
-    start_date = forms.DateField(label='Start Date', widget=forms.SelectDateWidget)
-    End_date = forms.DateField(label='End Date', widget=forms.SelectDateWidget)
+    destination = forms.CharField(label='Destination', widget=forms.Select(choices=choice2))
+    travel_date = forms.DateField(label='Travel Date', widget=forms.SelectDateWidget)
