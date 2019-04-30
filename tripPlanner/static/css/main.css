@@ -49,6 +49,25 @@ $black			: #222;
 /*  Basic Style
 /* =================================== */
 
+.newbox{
+    background: #25383C;
+  line-height: 42px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: none;
+  color: #fff3cd;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  position: relative;
+
+}
 body {
   color: #777777;
   font-family: "Poppins", sans-serif;
@@ -876,6 +895,26 @@ body.mobile-nav-active #mobile-nav-toggle {
 #nav-menu-container {
   padding-right: 15px;
 }
+
+.secondary-btn {
+  background: #25383C;
+  line-height: 42px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: none;
+  color: #fff3cd;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  position: relative;
+}
+
 
 .primary-btn {
   background: #f8b600;

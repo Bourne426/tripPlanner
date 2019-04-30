@@ -8,9 +8,9 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								About Us
+								Package Details
 							</h1>
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="about.html"> About Us</a></p>
+							<p class="text-white link-nav"><a href="index.html">package </a>  <span class="lnr lnr-arrow-right"></span>  <a href="about.html">package details</a></p>
 						</div>
 					</div>
 				</div>
@@ -28,13 +28,13 @@
 
                             {% for details in package_details %}
 
-                            <p>Day - {{ details.Day }}</p>
-                            <p>Title -{{ details.Title }}</p>
+                            <p class="primary-btn">Day - {{ details.Day }}</p><br>
+                            <p class="newbox">Title -{{ details.Title }}</p>
                             <p>Description - {{ details.Description }}</p>
                             {% endfor %}
-							<a href="#">Customize Packages</a>
+							<p class="primary-btn">Activities</p><br>
 							{% for activity in Activity %}
-							<p> {{ activity.Activity }}</p>
+							<p class="newbox"> {{ activity.Activity }}</p><br>
 							{% endfor%}
                         </div>
 					</div>

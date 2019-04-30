@@ -10,6 +10,8 @@ from package.models import *
 
 # from tripPlanner.package.models import Package_Details
 from package.models import Package_Details
+
+from package.models import Gallery
 from .forms import Query_Form
 
 # Create your views here.
@@ -36,7 +38,7 @@ def query_form_view(request):
                 cursor.execute(query)
                 city_id = cursor.fetchone()
                 if not city_id:
-                    photo = Gallery.objects.get(Activity_Id=3)
+                    photo = Gallery.objects.get(Activity_Id=1)
                     print(photo)
                     forms = Query_Form()
                     return render(request, 'index.html',{'forms':forms,'photo':photo,})
@@ -126,9 +128,20 @@ def packages(request):
     return render(request,'packages.html')
 
 
+def custom_package(request):
+    return render(request,'custom_package.html')
+
+
+def custom_package1(request):
+    return render(request,'custom_package1.html')
+
+
+def custom_package2(request):
+    return render(request,'custom_package2.html')
+
 def contact(request):
     return render(request,'contact.html')
-<<<<<<< HEAD
+
 
 
 def customized_package_view(request):
@@ -148,5 +161,4 @@ def customized_package_view(request):
             'forms': forms,
         }
         return render(request,'package/booking.html', context)
-=======
->>>>>>> 7dcda8bc2062949c09ad034ed8dd7a56a450b0e0
+
