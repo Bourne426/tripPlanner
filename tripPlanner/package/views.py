@@ -131,7 +131,8 @@ def Coustomize_view(request):
         forms = CoustomForm(request.POST)
         if forms.is_valid():
             forms.save()
-
+        else:
+            
     else:
         forms = CoustomForm()
         return render(request,'coustomize.html', {'forms':forms})

@@ -79,14 +79,22 @@ WSGI_APPLICATION = 'tripPlanner.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+<<<<<<< HEAD
 #
+=======
+
+>>>>>>> fde7aa072e12fb32b1d22e71248b17c0aa186294
 DATABASES = {
     'default':
         {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'tripPlanner',
             'USER': 'root',
+<<<<<<< HEAD
             'PASSWORD': 'admin()',
+=======
+            'PASSWORD': 'ravish11',
+>>>>>>> fde7aa072e12fb32b1d22e71248b17c0aa186294
             'HOST': 'localhost',
         }
 }
