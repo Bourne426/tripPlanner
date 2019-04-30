@@ -20,21 +20,7 @@
 							  <div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
 								<form class="form-wrap" method="POST">
 									{% csrf_token %}
-									<!--<select class="form-control" >-->
-										<!--{% for city in cities %}-->
-											<!--<option value="{{ city.pk }}">{{ city.Name }}</option>-->
-										<!--{% endfor %}-->
-									<!--</select>-->
-									{{forms.as_p}}
-									<!--<div class="form-control" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">{{ forms.destination }}</div>-->
-
-<!--								<div class="form-control" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">{{ forms.as_p }}</div>
-									<input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
-									<input type="text" class="form-control" name="to" placeholder="To " onfocus="this.placeholder = ''" onblur="this.placeholder = 'To '">
-									<input type="text" class="form-control date-picker" name="start" placeholder="Start " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Start '">
-									<input type="text" class="form-control date-picker" name="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
-									<input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Adults " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '">
-									<input type="number" min="1" max="20" class="form-control" name="child" placeholder="Child " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child '">-->
+									{{ forms.as_p }}
 								<button type="submit" class="primary-btn text-uppercase">Search Holidays</button>
 								</form>
 							</div>
@@ -62,45 +48,45 @@
 										<div class="single-carusel">
 											<div class="thumb relative">
 												<div class="overlay overlay-bg"></div>
-												<img class="img-fluid" src="img/packages/hot-deal.jpg" alt="">
+												<img class="img-fluid" src="{% static 'img/packages/photo1.jpg' %}" alt="">
 											</div>
 											<div class="price-detials">
-												<a href="#" class="price-btn">Starting From <span>$250</span></a>
+												<a href="#" class="price-btn">Starting From <span>Rs 12999</span></a>
 											</div>
 											<div class="details">
 												<h4 class="text-white">Ancient Architecture</h4>
 												<p class="text-white">
-													Cairo, Egypt
+													Delhi
 												</p>
 											</div>
 										</div>
 										<div class="single-carusel">
 											<div class="thumb relative">
 												<div class="overlay overlay-bg"></div>
-												<img class="img-fluid" src="img/packages/hot-deal.jpg" alt="">
+												<img class="img-fluid" src="{% static 'img/packages/photo4.jpg' %}">
 											</div>
 											<div class="price-detials">
-												<a href="#" class="price-btn">Starting From <span>$250</span></a>
+												<a href="#" class="price-btn">Starting From <span>Rs 12599</span></a>
 											</div>
 											<div class="details">
 												<h4 class="text-white">Ancient Architecture</h4>
 												<p class="text-white">
-													Cairo, Egypt
+													Khajuraho
 												</p>
 											</div>
 										</div>
 										<div class="single-carusel">
 											<div class="thumb relative">
 												<div class="overlay overlay-bg"></div>
-												<img class="img-fluid" src="img/packages/hot-deal.jpg" alt="">
+												<img class="img-fluid" src="{% static 'img/packages/photo3.jpg' %}" alt="">
 											</div>
 											<div class="price-detials">
-												<a href="#" class="price-btn">Starting From <span>$250</span></a>
+												<a href="#" class="price-btn">Starting From <span>Rs 12999</span></a>
 											</div>
 											<div class="details">
 												<h4 class="text-white">Ancient Architecture</h4>
 												<p class="text-white">
-													Cairo, Egypt
+													Delhi
 												</p>
 											</div>
 										</div>
@@ -126,12 +112,11 @@
 							<div class="single-destination relative">
 								<div class="thumb relative">
 									<div class="overlay overlay-bg"></div>
-									<img class="img-fluid" src="img/d1.jpg" alt="">
+									<img class="img-fluid" src="{% static 'img/packages/photo6.jpg' %}" alt="">
 								</div>
 								<div class="desc">
-									<a href="#" class="price-btn">$150</a>
-									<h4>Mountain River</h4>
-									<p>Paraguay</p>
+									<a href="#" class="price-btn">Rs 11499</a>
+									<h4>Mysore</h4>
 								</div>
 							</div>
 						</div>
@@ -139,12 +124,11 @@
 							<div class="single-destination relative">
 								<div class="thumb relative">
 									<div class="overlay overlay-bg"></div>
-									<img class="img-fluid" src="img/d2.jpg" alt="">
+									<img class="img-fluid" src="{% static 'img/packages/photo9.jpg' %}" alt="">
 								</div>
 								<div class="desc">
-									<a href="#" class="price-btn">$250</a>
-									<h4>Dream City</h4>
-									<p>Paris</p>
+									<a href="#" class="price-btn">Rs 15499</a>
+									<h4>Agra</h4>
 								</div>
 							</div>
 						</div>
@@ -152,12 +136,11 @@
 							<div class="single-destination relative">
 								<div class="thumb relative">
 									<div class="overlay overlay-bg"></div>
-									<img class="img-fluid" src="img/d3.jpg" alt="">
+									<img class="img-fluid" src="{% static 'img/packages/photo8.jpg' %}" alt="">
 								</div>
 								<div class="desc">
-									<a href="#" class="price-btn">$350</a>
-									<h4>Cloud Mountain</h4>
-									<p>Sri Lanka</p>
+									<a href="#" class="price-btn">Rs 13499</a>
+									<h4>Madurai</h4>
 								</div>
 							</div>
 						</div>
@@ -182,7 +165,7 @@
 						<div class="col-lg-3 col-md-6">
 							<div class="single-other-issue">
 								<div class="thumb">
-									<img class="img-fluid" src="img/o1.jpg" alt="">
+									<img class="img-fluid" src="{% static 'img/o1.jpg' %}" alt="">
 								</div>
 								<a href="#">
 									<h4>Rent a Car</h4>
@@ -195,7 +178,7 @@
 						<div class="col-lg-3 col-md-6">
 							<div class="single-other-issue">
 								<div class="thumb">
-									<img class="img-fluid" src="img/o2.jpg" alt="">
+									<img class="img-fluid" src="{% static 'img/o2.jpg' %}" alt="">
 								</div>
 								<a href="#">
 									<h4>Cruise Booking</h4>
@@ -208,7 +191,7 @@
 						<div class="col-lg-3 col-md-6">
 							<div class="single-other-issue">
 								<div class="thumb">
-									<img class="img-fluid" src="img/o3.jpg" alt="">
+									<img class="img-fluid" src="{% static 'img/o3.jpg' %}" alt="">
 								</div>
 								<a href="#">
 									<h4>To Do List</h4>
@@ -221,7 +204,7 @@
 						<div class="col-lg-3 col-md-6">
 							<div class="single-other-issue">
 								<div class="thumb">
-									<img class="img-fluid" src="img/o4.jpg" alt="">
+									<img class="img-fluid" src="{% static 'img/o4.jpg' %}" alt="">
 								</div>
 								<a href="#">
 									<h4>Food Features</h4>
@@ -252,7 +235,7 @@
 							<a href="#" class="primary-btn text-uppercase">request custom price</a>
 						</div>
 						<div class="col-lg-6 col-md-12 home-about-right no-padding">
-							<img class="img-fluid" src="img/about-img.jpg" alt="">
+							<img class="img-fluid" src="{% static 'img/packages/photo2.jpg' %}" alt="">
 						</div>
 					</div>
 				</div>
