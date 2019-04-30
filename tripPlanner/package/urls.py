@@ -13,4 +13,5 @@ urlpatterns = [
     path('packages/', views.packages, name='packages'),
     path('custom/', views.Coustomize_view, name='custom'),
     path('details/<pk>/', views.details_trip_package, name='details_trip_package'),
+    path('book/<pk>/', views.book_package1, name='book_package1'),
 ]

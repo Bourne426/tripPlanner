@@ -126,14 +126,14 @@ class Extra_Activity(models.Model):
 
 
 class Booking(models.Model):
-    User_Id = models.OneToOneField(User, on_delete=models.CASCADE)
+    User_Id = models.ForeignKey(User, on_delete=models.CASCADE)
     Package_Id = models.ForeignKey(Trip_Package, on_delete=models.CASCADE)
     Adults = models.IntegerField()
     Child = models.IntegerField()
     Infant = models.IntegerField()
     Fare = models.IntegerField(null=True)
 
-    def __str__(self):
+    def __int__(self):
         return self.User_Id
 
 class Extra_Activity(models.Model):

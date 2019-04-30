@@ -32,6 +32,7 @@
                             <p class="newbox">Title -{{ details.Title }}</p>
                             <p>Description - {{ details.Description }}</p>
                             {% endfor %}
+							<a href="{% url 'package:book_package1' pk=Package_Id %}" >Book Package Now</a>
 							<p class="primary-btn">Activities</p><br>
 							{% for activity in Activity %}
 							<p class="newbox"> {{ activity.Activity }}</p><br>

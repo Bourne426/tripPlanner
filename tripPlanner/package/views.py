@@ -12,6 +12,9 @@ from package.models import *
 from package.models import Package_Details
 from .forms import Query_Form,CoustomForm
 
+
+from package.models import Gallery
+
 # Create your views here.
 
 def query_form_view(request):
@@ -31,7 +34,7 @@ def query_form_view(request):
             #print(city_id1)
             package=[]
             with connection.cursor() as cursor:
-                query = 'SELECT * FROM package_city WHERE lower(Name) LIKE lower(\"%s' %destination +'%'+'\")'
+                query = 'SELECT * FROM package_city WHERE lower(Name) LIKE lower(\"%s' %destination +'%'+'\") OR lower(State) LIKE lower(\"%s' %destination +'%'+'\")'
                 print(query)
                 cursor.execute(query)
                 city_id = cursor.fetchone()
@@ -87,28 +90,43 @@ def details_trip_package(request,pk):
         city_id.append(id_city)
     city = City.objects.filter(pk__in=city_id)
     Activity = Total_Activities.objects.filter(City_Id__in=city)
+    x=City.objects.values_list('State').distinct()
+    print("ccccccccccccccccccccccc")
+    print(x)
     context = {
         'package_details': package_details,
         'city': city,
         'Activity': Activity,
+        'Package_Id': pk,
     }
     return render(request, 'package/packagedetails.html', context)
 
-@login_required
-def book_package(request,booking_id):
+# @login_required
+def book_package1(request,pk):
     if request.method == 'POST':
         forms = Booking_Form(request.POST, request.FILES)
         if forms.is_valid():
-            instance = forms.save(commit=False)
-            instance.User_Id = request.user
-            instance.save()
+            # instance = forms.save(commit=False)
+            # instance.User_Id = request.user
+            # instance.save()
+            Adults = forms.cleaned_data.get('Adults')
+            Child = forms.cleaned_data.get('Child')
+            Infant = forms.cleaned_data.get('Infant')
+            package_id = Trip_Package.objects.get(pk=pk)
+            user_id = request.user
+            fare = package_id.Cost
+            total_fare = int(fare)*(int(Adults)+int(Child))
+            total_fare=total_fare+int(Infant)*fare*0.33
+            book = Booking(User_Id=user_id, Package_Id=package_id, Adults=Adults, Child=Child, Infant=Infant, Fare=total_fare)
+            book.save()
+            return HttpResponse("BOOKED")
 
     else:
         forms = Booking_Form()
         context = {
             'forms': forms
         }
-        return render(request, 'package/bookings.html', context)
+        return render(request, 'package/booking.html', context)
 
 def index(request):
     return render(request,'index.html')
