@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from .models import City, Package_Details, Total_Activities
+from .models import City, Package_Details, Total_Activities, Coustomize_package
 
 
 class Query_Form(forms.Form):
@@ -18,8 +18,14 @@ class Query_Form(forms.Form):
     # travel_date = forms.DateField(label='Travel Date', widget=forms.SelectDateWidget)
 
 class Booking_Form(ModelForm):
+
     pass
 
+
+class CoustomForm(ModelForm):
+    class Meta:
+        model=Coustomize_package
+        fields=['Cities','Days','Budget','Keys']
 
 
 class Customized_Package_Form(forms.Form):

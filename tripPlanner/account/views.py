@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from account.forms import UserInfoForm#,UserProfileForm
+from account.forms import UserInfoForm ,QueryForm
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse
@@ -134,3 +134,13 @@ def edit_profile(request):
         form = EditProfileForm(instance=request.user)
         args = {'form': form}
         return render(request, 'login/editprofile.html', args)
+
+
+
+def Queryview(request):
+    if request.method == 'POST':
+        form = QueryForm(request.POST)
+        form.save()
+        return HttpResponseRedirect('your query is submitted')
+    else:
+        return render(request,'contact.html',{'form':QueryForm()})

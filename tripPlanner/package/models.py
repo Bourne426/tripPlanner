@@ -131,7 +131,7 @@ class Booking(models.Model):
     Adults = models.IntegerField()
     Child = models.IntegerField()
     Infant = models.IntegerField()
-    Fare = models.IntegerField()
+    Fare = models.IntegerField(null=True)
 
     def __str__(self):
         return self.User_Id
@@ -144,9 +144,13 @@ class Extra_Activity(models.Model):
         return self.Booking_Id
 
 
-
-
-
 class Gallery(models.Model):
     Activity_Id= models.ForeignKey(Total_Activities, on_delete=models.CASCADE)
     img = models.ImageField(upload_to='photos', blank=True)
+
+
+class Coustomize_package(models.Model):
+    Cities = models.ManyToManyField(City)
+    Days = models.IntegerField()
+    Budget = models.IntegerField()
+    Keys = models.ManyToManyField(Key_Features)

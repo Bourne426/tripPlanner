@@ -15,6 +15,8 @@ urlpatterns = [
     path('logout/',views.user_logout,name='logout'),
     # path('profile/',views.user_profile,name='profile'),
     # path('forgot-pass/',views.forget_pass,name='forgot'),
+    path('contact/', views.Queryview, name='contact'),
+
     path('activate/<uidb64>/<token>/',
         views.activate, name='activate'),
 

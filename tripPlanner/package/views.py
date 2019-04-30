@@ -10,7 +10,7 @@ from package.models import *
 
 # from tripPlanner.package.models import Package_Details
 from package.models import Package_Details
-from .forms import Query_Form
+from .forms import Query_Form,CoustomForm
 
 # Create your views here.
 
@@ -126,9 +126,15 @@ def packages(request):
     return render(request,'packages.html')
 
 
-def contact(request):
-    return render(request,'contact.html')
-<<<<<<< HEAD
+def Coustomize_view(request):
+    if request.method == 'POST':
+        forms = CoustomForm(request.POST)
+        if forms.is_valid():
+            forms.save()
+
+    else:
+        forms = CoustomForm()
+        return render(request,'coustomize.html', {'forms':forms})
 
 
 def customized_package_view(request):
@@ -148,5 +154,3 @@ def customized_package_view(request):
             'forms': forms,
         }
         return render(request,'package/booking.html', context)
-=======
->>>>>>> 7dcda8bc2062949c09ad034ed8dd7a56a450b0e0

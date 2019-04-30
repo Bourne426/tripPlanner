@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib.auth.forms import  UserChangeForm#,PasswordChangeForm
-
+from account.models import *
 
 from django.forms import ModelForm
 
@@ -83,3 +83,9 @@ class EditProfileForm(ModelForm):
             'first_name',
             'last_name',
         )
+
+
+class QueryForm(ModelForm):
+    class Meta:
+        model = Booking
+        fields = '__all__'
