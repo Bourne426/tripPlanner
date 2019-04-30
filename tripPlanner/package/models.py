@@ -116,6 +116,15 @@ class Package_Details(models.Model):
 
 
 
+class Extra_Activity(models.Model):
+    Booking_Id = models.ForeignKey(Trip_Package, on_delete=models.CASCADE)
+    Activity_Id = models.ForeignKey(Total_Activities, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.Booking_Id
+
+
+
 class Booking(models.Model):
     User_Id = models.OneToOneField(User, on_delete=models.CASCADE)
     Package_Id = models.ForeignKey(Trip_Package, on_delete=models.CASCADE)

@@ -30,7 +30,11 @@
 							</div>
 							<nav id="nav-menu-container">
 								<ul class="nav-menu">
+									{% if user.is_authenticated %}
+									<li><a href="{% url 'account:logout' %}">Logout</a></li>
+									{% else %}
 									<li><a href="{% url 'login' %}">Login</a></li>
+									{% endif %}
 									<li><a href="{% url 'package:index' %}">Home</a></li>
 									<li><a href="{% url 'package:about' %}">About</a></li>
 									<li><a href="{% url 'package:packages' %}">Packages</a></li>
@@ -98,10 +102,8 @@
           <script src="{% static 'js/easing.min.js' %}"></script>
         <script src="{% static 'js/hoverIntent.js' %}"></script>
         <script src="{% static 'js/superfish.min.js' %}"></script>
-        <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
         <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
         <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-        <script src="{% static 'js/mail-script.js' %}"></script>
         <script src="{% static 'js/main.js' %}"></script>
         </body>
         </html>
