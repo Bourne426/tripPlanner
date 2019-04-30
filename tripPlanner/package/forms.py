@@ -20,7 +20,7 @@ class Query_Form(forms.Form):
 class Booking_Form(ModelForm):
     class Meta:
         model = Booking
-        fields = ['Adults', 'Childs', 'Infant']
+        fields = ['Adults', 'Child', 'Infant']
 
 
 class CoustomForm(ModelForm):

@@ -132,6 +132,7 @@ def Coustomize_view(request):
         if forms.is_valid():
             forms.save()
         else:
+            pass
             
     else:
         forms = CoustomForm()
