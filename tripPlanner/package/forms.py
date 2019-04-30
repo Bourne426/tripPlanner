@@ -1,5 +1,9 @@
 from django import forms
-from .models import City
+from django.forms import ModelForm
+
+from .models import City, Package_Details, Total_Activities
+
+
 class Query_Form(forms.Form):
     #
     # choice = City.objects.all()
@@ -12,3 +16,19 @@ class Query_Form(forms.Form):
     #
     destination = forms.CharField(label='Destination')
     # travel_date = forms.DateField(label='Travel Date', widget=forms.SelectDateWidget)
+
+class Booking_Form(ModelForm):
+    pass
+
+
+
+class Customized_Package_Form(forms.Form):
+    activities = Total_Activities.objects.all()
+    activities = list(activities)
+    ACTIVITIES_CHOICES = []
+    for x in activities:
+        x =str(x)
+        activities_tuple = (x, x)
+        ACTIVITIES_CHOICES.append(activities_tuple)
+    print(ACTIVITIES_CHOICES)
+    Activities = forms.CharField(widget=forms.SelectMultiple(choices=ACTIVITIES_CHOICES))

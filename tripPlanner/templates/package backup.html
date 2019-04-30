@@ -55,8 +55,17 @@
 											<span>Duration</span>
 											<span>{{ package.Day}} days and {{ package.Night}} nights</span>
 										</li>
+										<!--<li class="d-flex justify-content-between align-items-center">-->
+											<!--<span>Key features</span>-->
+											<!--<span></span>-->
+										<!--</li>-->
 										<li class="d-flex justify-content-between align-items-center">
 											<span>City</span>
+											<!--{% for cities in city_id %}-->
+												<!--{% if forloop.first %}-->
+													<!--<span>{{ cities.Name}}</span>-->
+												<!--{% endif %}-->
+											<!--{% endfor %}-->
 										</li>
 										<li class="d-flex justify-content-between align-items-center">
 											<span>Extras</span>
@@ -66,10 +75,25 @@
 											<span>Price per person</span>
 											<a href="#" class="price-btn">Rs {{ package.Cost }}</a>
 										</li>
-
+										{% for details in package_detail %}
+										<!--{% if details.Package_Id in package.id %}-->
+										{{ details.Package_Id }}
+											{{ details.Title }}
 										<li class="d-flex justify-content-between align-items-center">
-											<a href="{% url 'package:details_trip_package' pk=package.id %}" >View Details</a>
+											<span>view details</span>
+											<a href="{% url 'package:details_trip_package' pk=details.id %}" >{{ details.Title }}</a>
 										</li>
+										<!--{% endif %}-->
+										{% endfor %}
+										<!--<li class="d-flex justify-content-between align-items-center">-->
+											<!--{% for details in package_detail %}
+												{{ details.Title }}
+												{% if details.Package_Id in package.id %}-->
+											<!--<span>	View Details</span>-->
+												<!--	<a href="{% url 'package:details_trip_package' pk=details.id %}" >{{details.Title}}</a>
+												--><!--{% endif %}-->
+											<!--{% endfor %}-->
+										<!--</li>-->
 
 									</ul>
 								</div>

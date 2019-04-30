@@ -27,7 +27,7 @@ urlpatterns = [
     path('login/', user_login, name='login'),
     path('account/', include("account.urls")),
     path('index/', index, name='index'),
-    path('package/', include("package.urls")),
+    path('package/', include("package.urls", namespace='package')),
     path('upload/', include("upload_package.urls")),
     re_path(r'^accounts/', include('account.passwords.urls')),
 
