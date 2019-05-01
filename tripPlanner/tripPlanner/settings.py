@@ -86,7 +86,7 @@ DATABASES = {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'tripPlanner',
             'USER': 'root',
-            'PASSWORD': 'ravish11',
+            'PASSWORD': 'admin()',
             'HOST': 'localhost',
         }
 }

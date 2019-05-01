@@ -11,9 +11,10 @@ from package.models import *
 
 # from tripPlanner.package.models import Package_Details
 from package.models import Package_Details
+from .forms import *
+
 
 from package.models import Gallery
-from .forms import Query_Form,Booking_Form
 
 # Create your views here.
 
@@ -23,9 +24,9 @@ def query_form_view(request):
 
         if forms.is_valid():
             destination = forms.cleaned_data['destination']
-            city_id = City.objects.filter(Q(Name__startswith=destination))
-            packages = Trip_Package.objects.filter(Cities__in=city_id)
-            destination = destination.title()
+            # city_id = City.objects.filter(Q(Name__startswith=destination))
+            # packages = Trip_Package.objects.filter(Cities__in=city_id)
+            # destination = destination.title()
             print("printing destination")
             print(destination)
             # city_id = City.objects.filter(Q(Name__startswith=destination))
@@ -39,7 +40,7 @@ def query_form_view(request):
                 cursor.execute(query)
                 city_id = cursor.fetchone()
                 if not city_id:
-                    photo = Gallery.objects.get(Activity_Id=1)
+                    photo = Gallery.objects.get(Activity_Id=3)
                     print(photo)
                     forms = Query_Form()
                     return render(request, 'index.html',{'forms':forms,'photo':photo,})
@@ -76,19 +77,42 @@ def query_form_view(request):
         photo = Gallery.objects.get(Activity_Id=3)
         print(photo)
         forms = Query_Form()
+        cities=dict()
+        State=City.objects.values_list('State').distinct()
+
+        context={
+            'forms':forms,
+            'photo':photo,
+
+        }
         return render(request, 'index.html',{'forms':forms,'photo':photo,})
 
 def details_trip_package(request,pk):
     package = Trip_Package.objects.filter(pk=pk)
+    # with connection.cursor() as cursor:
+    #     cursor.execute("SELECT id FROM package_trip_package WHERE id=%s",[pk])
+    #     package = cursor.fetchone()
+    #     query = 'SELECT * FROM package_package_details WHERE Package_Id_id=%s'%package[0]
+    #     print(query)
+        # cursor.execute("SELECT * FROM package_package_details WHERE Package_Id_id=%s",[package[0]])
+        # package_details=cursor.fetchall()
+        # package_details=Package_Details.objects.raw("SELECT * FROM package_package_details WHERE Package_Id_id=%s",[package[0]])
+        # print("xxxxxxxxxxxxxxxxxxxxx")
+        # print(package_details)
     package_details = Package_Details.objects.filter(Package_Id__in=package)
     city=package_details.values('City')
+    # city=[ package.Package_Id_id for package in package_details]
+
     city_list = [dict(q) for q in city]
+    print(city_list)
     city_id = []
     for i in range(len(city_list)):
         id_city=city_list[i]["City"]
         id_city=str(id_city)
         city_id.append(id_city)
     city = City.objects.filter(pk__in=city_id)
+    print("bbbbbbbbbbbbbbbb")
+    print(city)
     Activity = Total_Activities.objects.filter(City_Id__in=city)
     x=City.objects.values_list('State').distinct()
     Image = Gallery.objects.filter(Activity_Id__in=Activity)
@@ -96,6 +120,8 @@ def details_trip_package(request,pk):
     leng=max(len(Image),len(package_details))
     print("ccccccccccccccccccccccc")
     print(x)
+
+
     context = {
         'package_details': package_details,
         'city': city,
@@ -179,20 +205,18 @@ def packages(request):
     return render(request,'packages.html')
 
 
-def custom_package(request):
-    return render(request,'custom_package.html')
+def Coustomize_view(request):
+    if request.method == 'POST':
+        forms = CoustomForm(request.POST)
+        if forms.is_valid():
+            forms.save()
+            return render(request,'custom_package2.html')
+        else:
+            pass
 
-
-def custom_package1(request):
-    return render(request,'custom_package1.html')
-
-
-def custom_package2(request):
-    return render(request,'custom_package2.html')
-
-def contact(request):
-    return render(request,'contact.html')
-
+    else:
+        forms = CoustomForm()
+        return render(request,'coustomize.html', {'forms':forms})
 
 
 def customized_package_view(request):
@@ -217,3 +241,4 @@ def customized_package_view(request):
 def my_booking(request):
     book = Booking.objects.filter(User_Id=request.user.id)
     return render(request,'user.html',{'book':book})
+
