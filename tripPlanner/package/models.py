@@ -5,6 +5,7 @@ from django import forms
 from django.db.models import CharField
 from django.db.models.fields.files import FieldFile
 from django.utils import timezone
+import datetime
 
 class Amenities(models.Model):
     Amenities = models.CharField(max_length=100)
@@ -132,6 +133,8 @@ class Booking(models.Model):
     Child = models.IntegerField()
     Infant = models.IntegerField()
     Fare = models.IntegerField()
+    Date = models.DateField(default=datetime.date.today())
+    Payment_Done = models.BooleanField(default=False)
 
     def __int__(self):
         return self.User_Id

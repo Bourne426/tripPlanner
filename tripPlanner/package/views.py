@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+import datetime
 
 from django.forms.models import model_to_dict
 from django.db import connection
@@ -90,6 +91,9 @@ def details_trip_package(request,pk):
     city = City.objects.filter(pk__in=city_id)
     Activity = Total_Activities.objects.filter(City_Id__in=city)
     x=City.objects.values_list('State').distinct()
+    Image = Gallery.objects.filter(Activity_Id__in=Activity)
+    print(Image)
+    leng=max(len(Image),len(package_details))
     print("ccccccccccccccccccccccc")
     print(x)
     context = {
@@ -97,8 +101,12 @@ def details_trip_package(request,pk):
         'city': city,
         'Activity': Activity,
         'Package_Id': pk,
+        'Images': Image,
+        'l':leng,
     }
     return render(request, 'package/packagedetails.html', context)
+
+
 
 # @login_required
 def book_package1(request,pk):
@@ -108,17 +116,30 @@ def book_package1(request,pk):
             # instance = forms.save(commit=False)
             # instance.User_Id = request.user
             # instance.save()
+            request.session['Adults'] = forms.cleaned_data.get('Adults')
+            request.session['Child'] = forms.cleaned_data.get('Child')
+            request.session['Infant'] = forms.cleaned_data.get('Infant')
+            pk_id = Trip_Package.objects.get(pk=pk)
+            request.session['package_id'] = pk
             Adults = forms.cleaned_data.get('Adults')
             Child = forms.cleaned_data.get('Child')
             Infant = forms.cleaned_data.get('Infant')
-            package_id = Trip_Package.objects.get(pk=pk)
+
             user_id = request.user
-            fare = package_id.Cost
+            fare = pk_id.Cost
             total_fare = int(fare)*(int(Adults)+int(Child))
             total_fare=total_fare+int(Infant)*fare*0.33
-            book = Booking(User_Id=user_id, Package_Id=package_id, Adults=Adults, Child=Child, Infant=Infant, Fare=total_fare)
-            book.save()
-            return HttpResponse("BOOKED")
+            request.session['total_fare'] = total_fare
+            # return redirect('package:book_details')
+            # return redirect(reverse('/package/book/details'))
+            context = {
+                'package_id': request.session.get('package_id'),
+                'Adults': request.session.get('Adults'),
+                'Child': request.session.get('Child'),
+                'Infant': request.session.get('Infant'),
+                'Fare': request.session.get('total_fare'),
+            }
+            return render(request, 'package/Booking_Detail.html', context)
 
     else:
         forms = Booking_Form()
@@ -126,6 +147,21 @@ def book_package1(request,pk):
             'forms': forms
         }
         return render(request, 'package/booking.html', context)
+
+
+def book_package3(request):
+    package_id = request.session.get('package_id')
+    Adults = request.session.get('Adults')
+    Child  = request.session.get('Child')
+    Infant = request.session.get('Infant')
+    total_fare= request.session.get('total_fare')
+    package_id = Trip_Package.objects.get(pk=package_id)
+    user_id = request.user
+    book = Booking(User_Id=user_id, Package_Id=package_id, Adults=Adults, Child=Child, Infant=Infant, Fare=total_fare, Date=datetime.date.today())
+    book.save()
+    print(book)
+
+    return render(request,'package/confirm.html')
 
 def index(request):
     return render(request,'index.html')
@@ -177,3 +213,7 @@ def customized_package_view(request):
         }
         return render(request,'package/booking.html', context)
 
+
+def my_booking(request):
+    book = Booking.objects.filter(User_Id=request.user.id)
+    return render(request,'user.html',{'book':book})
