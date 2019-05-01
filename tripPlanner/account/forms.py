@@ -88,4 +88,4 @@ class EditProfileForm(ModelForm):
 class QueryForm(ModelForm):
     class Meta:
         model = Booking
-        fields = '__all__'
+        fields = ('Name','Subject','Email','Message')

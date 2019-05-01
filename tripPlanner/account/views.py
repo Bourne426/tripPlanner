@@ -140,7 +140,8 @@ def edit_profile(request):
 def Queryview(request):
     if request.method == 'POST':
         form = QueryForm(request.POST)
-        form.save()
-        return HttpResponseRedirect('your query is submitted')
+        if form.is_valid:
+            form.save()
+            return HttpResponseRedirect('your query is submitted')
     else:
         return render(request,'contact.html',{'form':QueryForm()})
